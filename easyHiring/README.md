@@ -1,5 +1,9 @@
-To run this app with Expo mobile application: npm start
-To run this on Android Emulator: npm run android (@ Mac OS terminal, type: android to open AndroidSDK window and check required packages for enabling Emulator)
+To run this app with Expo mobile application: npm start.
+
+
+To run this on Android Emulator: npm run android (@ Mac OS terminal, type: android to open AndroidSDK window and check required packages for enabling Emulator).
+
+
 Should be able to run on iOS as well.
 
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
