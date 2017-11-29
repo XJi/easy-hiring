@@ -3,6 +3,7 @@ import * as firebase from 'firebase';
 import Firebase from './includes/firebase';
 import LoginScreen from './pages/LoginScreen'
 import CompanyProfile from './pages/CompanyProfile'
+import ApplicantProfile from './pages/ApplicantProfile'
 import {
   StackNavigator,
 } from 'react-navigation';
@@ -18,7 +19,7 @@ class HomeScreen extends React.Component {
       <View style={styles.container}>
         <Text>Are you an applicant or a recruiter?</Text>
         <Button
-          onPress={() => navigate('Login')}
+          onPress={() => navigate('Applicant')}
           title="Applicant"
         />
         <Button
@@ -39,6 +40,9 @@ export const AppPages = StackNavigator({
   },
   Company: {
     screen: CompanyProfile,
+  },
+  Applicant: {
+    screen: ApplicantProfile,
   },
 });
 
