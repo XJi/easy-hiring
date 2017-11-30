@@ -99,8 +99,18 @@ export default class ApplicantProfile extends React.Component {
     );
   }
   _renderJobItem(item) {
+    const onPress = () => {
+      AlertIOS.alert(
+        'Apply',
+        null,
+        [
+          {text: 'Apply', onPress: (text) => console.log('apply')},
+          {text: 'Cancel', onPress: (text) => console.log('Cancelled')}
+        ]
+        );
+    };
     return (
-      <JobListItem item={item} />
+      <JobListItem item={item} onPress = {onPress}/>
     );
   }
   _renderItem(item) {
@@ -115,7 +125,7 @@ export default class ApplicantProfile extends React.Component {
      //     );
      // };
      return (
-       <ListItem item={item} />
+       <ListItem item={item}/>
        );
    }
 }
