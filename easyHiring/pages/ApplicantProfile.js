@@ -79,8 +79,15 @@ export default class ApplicantProfile extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>ApplicantProfile</Text>
-
+        <Text style={styles.heading}>ApplicantProfile</Text>
+        <View style={styles.qrcode}>
+        <QRCode
+          value='https://firebasestorage.googleapis.com/v0/b/easy-hiring-57516.appspot.com/o/YongruiLin_Resume.pdf?alt=media&token=2ffcc534-44eb-4cc3-a4fb-c5a863b1ace1'
+          size={150}
+          bgColor='purple'
+          fgColor='white'/>
+        </View>
+        <Text style={styles.title}> Skill Set </Text>
         <ListView
         dataSource = {this.state.dataSource}
         renderRow={this._renderItem.bind(this)}
