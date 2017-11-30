@@ -8,47 +8,45 @@ import { AppRegistry, StyleSheet, Text, View, Button, ListView,TextInput,Touchab
 const styles = require('../includes/styles.js');
 const ListItem = require('./ListItem');
 const JobListItem = require('./JobListItem');
-export default class JobsView extends React.Component {
+export default class AppliedCandidates extends React.Component {
   constructor(props){
 
     super(props);
     this.state = {
-      dataSource2: new ListView.DataSource({
+      dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
       }),
       loaded: true
     };
   //  this.itemsRef = firebase.database().ref().child('applicant').child('yongrui').child('skill')
     const { params } = this.props.navigation.state;
-    this.companyRef = firebase.database().ref().child('company').child(this.props.navigation.state.params.name);
+    console.log(this.props.navigation.state.params.name);
+    this.personRef = firebase.database().ref().child('company').child(this.props.navigation.state.params.name).child('Jobs').child(this.props.navigation.state.params.job);
   }
 
   static navigationOptions = {
-    title: 'Job Description',
+    title: 'Applied Candidates',
   };
 
-  async listenForJobItems(companyRef) {
+  async listenForPersonItems(personRef) {
 
-    companyRef.on('value', (snap) => {
+    personRef.child('applied').on('value', (snap) => {
       var items = [];
       snap.forEach((child) => {
-        if(child.key == 'Jobs'){
-          child.forEach((job) => {
-              items.push({
-                jobname:job.key
-              });
+          items.push({
+            jobname:child.key
           });
-        }
+          console.log('person :' + child.skill + ' ' +child.key);
       });
       this.setState({
-        dataSource2: this.state.dataSource2.cloneWithRows(items)
+        dataSource: this.state.dataSource.cloneWithRows(items)
       });
-      console.log(this.state.dataSource2);
+      console.log(this.state.dataSource);
     });
   }
   componentDidMount() {
     //this.listenForItems(this.itemsRef);
-    this.listenForJobItems(this.companyRef);
+    this.listenForPersonItems(this.personRef);
   }
 
   /**backtoprofile(){
@@ -59,25 +57,19 @@ export default class JobsView extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Job List </Text>
+        <Text>Person List </Text>
         <ListView
-          dataSource = {this.state.dataSource2}
-          renderRow={this._renderJobItem.bind(this)}
+          dataSource = {this.state.dataSource}
+          renderRow={this._renderPersonItem.bind(this)}
           enableEmptySections={true}
             style={styles.listview}
         />
       </View>
     );
   }
-  _renderJobItem(item) {
-    const { navigate } = this.props.navigation;
-    const { params } = this.props.navigation.state;
-    const onPress = () => {
-      console.log('item is: ' +item.jobname);
-      navigate('Candidates',{name: this.props.navigation.state.params.name, job: item.jobname });
-    };
+  _renderPersonItem(item) {
     return (
-      <JobListItem item={item} onPress = {onPress}/>
+      <JobListItem item={item}/>
     );
   }
 }

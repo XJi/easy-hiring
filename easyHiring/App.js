@@ -6,6 +6,7 @@ import CompanyProfile from './pages/CompanyProfile'
 import JobDescription from './pages/JobDescription'
 import ApplicantProfile from './pages/ApplicantProfile'
 import QRCodeScanner from './pages/QRCodeScanner'
+import AppliedCandidates from  './pages/AppliedCandidates'
 import JobsView from './pages/JobsView'
 import {
   StackNavigator,
@@ -56,6 +57,9 @@ export const AppPages = StackNavigator({
   ViewJobs: {
     screen: JobsView,
   },
+  Candidates: {
+    screen: AppliedCandidates,
+  },
 });
 
 export default class App extends React.Component {//export default
@@ -70,6 +74,7 @@ export default class App extends React.Component {//export default
     };
   }
   render() {
+    console.ignoredYellowBox = ['Setting a timer'];
       return <AppPages />;
   }
 }
