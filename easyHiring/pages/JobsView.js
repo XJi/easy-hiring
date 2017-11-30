@@ -43,7 +43,6 @@ export default class JobsView extends React.Component {
       this.setState({
         dataSource2: this.state.dataSource2.cloneWithRows(items)
       });
-      console.log(this.state.dataSource2);
     });
   }
   componentDidMount() {
@@ -73,7 +72,7 @@ export default class JobsView extends React.Component {
     const { navigate } = this.props.navigation;
     const { params } = this.props.navigation.state;
     const onPress = () => {
-      console.log('item is: ' +item.jobname);
+      //console.log('item is: ' +item.jobname);
       navigate('Candidates',{name: this.props.navigation.state.params.name, job: item.jobname });
     };
     return (
