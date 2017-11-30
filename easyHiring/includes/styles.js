@@ -9,6 +9,8 @@ var styles = StyleSheet.create({
     backgroundColor: '#f2f2f2',
     flex: 1,
     justifyContent:'center',
+    borderWidth: 2,
+    borderColor: 'transparent',
   },
   listview: {
     flex: 1,
@@ -63,6 +65,18 @@ var styles = StyleSheet.create({
     paddingLeft: 16,
     paddingTop: 14,
     paddingBottom: 16,
+  },
+  heading: {
+    textAlign:"center",
+    padding:5
+  },
+  qrcode: {
+    alignItems: 'center',
+    padding: 5,
+  },
+  title: {
+    backgroundColor:'#000',
+    color: '#fff',
   },
 })
 
