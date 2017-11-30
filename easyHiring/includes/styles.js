@@ -68,7 +68,8 @@ var styles = StyleSheet.create({
   },
   heading: {
     textAlign:"center",
-    padding:5
+    padding:5,
+    fontSize: 24,
   },
   qrcode: {
     alignItems: 'center',
