@@ -5,7 +5,6 @@ import {
   StackNavigator,
 } from 'react-navigation';
 import { AppRegistry, StyleSheet, Text, View, Button, TextInput} from 'react-native';
-var comName = '';
 export default class LoginScreen extends React.Component {
   constructor(props){
     super(props);
@@ -38,7 +37,7 @@ export default class LoginScreen extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <View>
+      <View style={styles.container}>
         <Text>Login</Text>
         <Text>Email Address</Text>
         <TextInput
@@ -63,4 +62,11 @@ export default class LoginScreen extends React.Component {
     );
   }
 }
-export {comName};
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});

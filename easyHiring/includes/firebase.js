@@ -12,6 +12,7 @@ class Firebase {
         messagingSenderId: "165151062127"
       });
     }
+
     static createUser(name, email, password){
       firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
         var errorCode = error.code;

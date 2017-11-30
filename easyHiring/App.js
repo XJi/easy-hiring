@@ -3,7 +3,11 @@ import * as firebase from 'firebase';
 import Firebase from './includes/firebase';
 import LoginScreen from './pages/LoginScreen'
 import CompanyProfile from './pages/CompanyProfile'
+<<<<<<< HEAD
 import JobDescription from './pages/JobDescription'
+=======
+import ApplicantProfile from './pages/ApplicantProfile'
+>>>>>>> 6334e280c9c51a44fcfb68305fb30447e0b0f88f
 import {
   StackNavigator,
 } from 'react-navigation';
@@ -19,7 +23,7 @@ class HomeScreen extends React.Component {
       <View style={styles.container}>
         <Text>Are you an applicant or a recruiter?</Text>
         <Button
-          onPress={() => navigate('Login')}
+          onPress={() => navigate('Applicant')}
           title="Applicant"
         />
         <Button
@@ -43,6 +47,9 @@ export const AppPages = StackNavigator({
   },
   Job: {
     screen: JobDescription,
+  },
+  Applicant: {
+    screen: ApplicantProfile,
   },
 });
 

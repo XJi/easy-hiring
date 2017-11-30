@@ -50,7 +50,7 @@ export default class CompanyProfile extends React.Component {
     const { navigate } = this.props.navigation;
     //console.log('user is : ' + this.props.navigation.state.params.email);
     return (
-      <View>
+      <View style={styles.container}>
         <Text>{this.state.name} Profile</Text>
         <Button
             onPress={this.addjob.bind(this)}
@@ -60,3 +60,11 @@ export default class CompanyProfile extends React.Component {
     );
   }
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
