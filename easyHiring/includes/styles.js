@@ -8,7 +8,7 @@ var styles = StyleSheet.create({
   container: {
     backgroundColor: '#f2f2f2',
     flex: 1,
-    justifyContent:'center',
+    // justifyContent:'center',
     borderWidth: 2,
     borderColor: 'transparent',
   },
@@ -76,9 +76,19 @@ var styles = StyleSheet.create({
     padding: 5,
   },
   title: {
-    backgroundColor:'#000',
+    backgroundColor:'#68a0cf',
+    overflow: 'hidden',
     color: '#fff',
+    borderRadius: 10,
+    borderColor: '#fff',
+    borderWidth: 1,
+    paddingLeft: 10,
+    paddingTop: 10,
+    paddingBottom: 10
   },
+  tomapbutton:{
+    backgroundColor:'#68a0cf',
+  }
 })
 
 module.exports = styles
