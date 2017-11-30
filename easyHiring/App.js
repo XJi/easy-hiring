@@ -5,6 +5,8 @@ import LoginScreen from './pages/LoginScreen'
 import CompanyProfile from './pages/CompanyProfile'
 import JobDescription from './pages/JobDescription'
 import ApplicantProfile from './pages/ApplicantProfile'
+import QRCodeScanner from './pages/QRCodeScanner'
+import JobsView from './pages/JobsView'
 import {
   StackNavigator,
 } from 'react-navigation';
@@ -47,6 +49,12 @@ export const AppPages = StackNavigator({
   },
   Applicant: {
     screen: ApplicantProfile,
+  },
+  QRScanner: {
+    screen: QRCodeScanner,
+  },
+  ViewJobs: {
+    screen: JobsView,
   },
 });
 

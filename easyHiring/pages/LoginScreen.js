@@ -1,11 +1,11 @@
 import React from 'react';
 import * as firebase from 'firebase';
 import Firebase from '../includes/firebase';
-import styles from '../includes/loginstyle';
 import {
   StackNavigator,
 } from 'react-navigation';
 import { AppRegistry, StyleSheet, Text, View, Button, TextInput} from 'react-native';
+const loginstyle = require('../includes/loginstyle');
 export default class LoginScreen extends React.Component {
   constructor(props){
     super(props);
@@ -46,7 +46,7 @@ export default class LoginScreen extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <View style={styles.container}>
+      <View style={loginstyle.container}>
         <Text>Login</Text>
         <Text>{this.state.errorMsg}</Text>
         <Text>Email Address</Text>
@@ -67,6 +67,7 @@ export default class LoginScreen extends React.Component {
         <Button
             onPress={this.login.bind(this)}
             title="Login"
+            style={loginstyle.primaryButton}
           />
       </View>
     );

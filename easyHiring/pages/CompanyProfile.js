@@ -45,6 +45,14 @@ export default class CompanyProfile extends React.Component {
     navigate('Job',{name: this.state.name, email: this.props.navigation.state.params.email});
 
   }
+  scanresume(){
+    const { navigate } = this.props.navigation;
+    navigate('QRScanner');
+  }
+  viewjobs(){
+    const { navigate } = this.props.navigation;
+    navigate('ViewJobs',{name: this.state.name, email: this.props.navigation.state.params.email} );
+  }
   render() {
     const { navigate } = this.props.navigation;
     return (
@@ -53,6 +61,14 @@ export default class CompanyProfile extends React.Component {
         <Button
             onPress={this.addjob.bind(this)}
             title="Add a New Job"
+          />
+        <Button
+            onPress={this.scanresume.bind(this)}
+            title="Scan Resume"
+          />
+        <Button
+            onPress={this.viewjobs.bind(this)}
+            title="Posted Jobs"
           />
       </View>
     );
