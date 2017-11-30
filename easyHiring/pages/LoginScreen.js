@@ -5,12 +5,13 @@ import {
   StackNavigator,
 } from 'react-navigation';
 import { AppRegistry, StyleSheet, Text, View, Button, TextInput} from 'react-native';
-
+var comName = '';
 export default class LoginScreen extends React.Component {
   constructor(props){
     super(props);
 
     this.state = {
+      name: '',
       email: '',
       password: '',
       loaded: true
@@ -20,15 +21,16 @@ export default class LoginScreen extends React.Component {
   static navigationOptions = {
     title: 'Login',
   };
-  login(){
+  async login(){
     const { navigate } = this.props.navigation;
+    const { params } = this.props.navigation.state;
     this.setState({
       loaded: false
     });
-    //Firebase.createUser('yo','yo@a.com','yyyyyy');
-    if(Firebase.authUser(this.state.email,this.state.password)){
-      navigate('Company');
-    }
+    Firebase.authUser(this.state.email,this.state.password);
+    navigate('Company',  {email: this.state.email});//, { user:  }
+
+
     //TODO: UPDATE loaded status
 
 
@@ -40,7 +42,7 @@ export default class LoginScreen extends React.Component {
         <Text>Login</Text>
         <Text>Email Address</Text>
         <TextInput
-            //style={styles.textinput}
+            //style={styles.textinput} this.setState({arrayvar:[...this.state.arrayvar, newelement]});
             onChangeText={(text) => this.setState({email: text})}
             value={this.state.email}
             placeholder={"Email Address"}
@@ -54,13 +56,11 @@ export default class LoginScreen extends React.Component {
             placeholder={"Password"}
           />
         <Button
-            //onPress={() => navigate('Applicant')}
             onPress={this.login.bind(this)}
             title="Login"
-
-
           />
       </View>
     );
   }
 }
+export {comName};

@@ -3,6 +3,7 @@ import * as firebase from 'firebase';
 import Firebase from './includes/firebase';
 import LoginScreen from './pages/LoginScreen'
 import CompanyProfile from './pages/CompanyProfile'
+import JobDescription from './pages/JobDescription'
 import {
   StackNavigator,
 } from 'react-navigation';
@@ -40,13 +41,17 @@ export const AppPages = StackNavigator({
   Company: {
     screen: CompanyProfile,
   },
+  Job: {
+    screen: JobDescription,
+  },
 });
 
 export default class App extends React.Component {//export default
   constructor(props) {
     super(props);
     Firebase.initialise();
-
+    //Firebase.createUser('Nintendo', 'nintendo@nintendo.com', 'nintendo');
+    //Firebase.createUser('Google', 'google@google.com', 'google');
     this.state = {
       userLoaded: false,
       initialView: null
