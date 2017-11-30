@@ -79,12 +79,12 @@ export default class ApplicantProfile extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.heading}>ApplicantProfile</Text>
+        <Text style={styles.heading}>Yongrui Lin</Text>
         <View style={styles.qrcode}>
         <QRCode
           value='https://firebasestorage.googleapis.com/v0/b/easy-hiring-57516.appspot.com/o/YongruiLin_Resume.pdf?alt=media&token=2ffcc534-44eb-4cc3-a4fb-c5a863b1ace1'
           size={150}
-          bgColor='purple'
+          bgColor='black'
           fgColor='white'/>
         </View>
         <Text style={styles.title}> Skill Set </Text>
@@ -94,7 +94,7 @@ export default class ApplicantProfile extends React.Component {
         enableEmptySections={true}
           style={styles.listview}
         />
-        <Text>Job List </Text>
+        <Text style={styles.title}>Job List </Text>
         <ListView
         dataSource = {this.state.dataSource2}
         renderRow={this._renderJobItem.bind(this)}
