@@ -29,11 +29,15 @@ class Firebase {
       console.log(email + ' ' + password);
     }
 
-    static authUser(email, password){
-      firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+    static async authUser(email, password){
+      var valid = await firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
         var errorCode = error.code;
         var errorMessage = error.message;
+        console.log(errorMessage);
+        return false;
       });
+      console.log('auth user: ' + valid);
+      return valid;
     }
 
     static addNewJob(name, jobTitle, jobDescription, skills){

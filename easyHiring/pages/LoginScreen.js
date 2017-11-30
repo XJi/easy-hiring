@@ -1,6 +1,7 @@
 import React from 'react';
 import * as firebase from 'firebase';
 import Firebase from '../includes/firebase';
+import styles from '../includes/loginstyle';
 import {
   StackNavigator,
 } from 'react-navigation';
@@ -12,6 +13,7 @@ export default class LoginScreen extends React.Component {
     this.state = {
       email: '',
       password: '',
+      errorMsg:'',
       loaded: true
     };
   }
@@ -25,19 +27,28 @@ export default class LoginScreen extends React.Component {
     this.setState({
       loaded: false
     });
-    Firebase.authUser(this.state.email,this.state.password);
-    navigate('Company',  {email: this.state.email});
-
-
-    //TODO: UPDATE loaded status
-
-
+    var checked= await Firebase.authUser(this.state.email,this.state.password);
+    if(checked){
+      navigate('Company',  {email: this.state.email});
+      this.setState({
+        loaded: true
+      });
+      this.setState({
+        errorMsg: ''
+      });
+    }
+    else{
+      this.setState({
+        errorMsg: 'Incorrect Login Information'
+      });
+    }
   }
   render() {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
         <Text>Login</Text>
+        <Text>{this.state.errorMsg}</Text>
         <Text>Email Address</Text>
         <TextInput
             //style={styles.textinput} this.setState({arrayvar:[...this.state.arrayvar, newelement]});
@@ -61,11 +72,11 @@ export default class LoginScreen extends React.Component {
     );
   }
 }
-const styles = StyleSheet.create({
+/*const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
-});
+});*/
