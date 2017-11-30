@@ -10,7 +10,7 @@ export default class CompanyProfile extends React.Component {
     super(props);
 
     this.state = {
-      name:'?',
+      name:'Default',
       loaded: true
     };
   }
@@ -38,17 +38,15 @@ export default class CompanyProfile extends React.Component {
     }).catch(function(error){console.log('Cant retrieve account', error)});
     this.setState({name: response});
   }
-  //const { params } = this.props.navigation.state;
   addjob(){
     const { navigate } = this.props.navigation;
     const { params } = this.props.navigation.state;
     console.log('addjob(): ' + this.state.name);
-    navigate('Job',{name: this.state.name });
+    navigate('Job',{name: this.state.name, email: this.props.navigation.state.params.email});
 
   }
   render() {
     const { navigate } = this.props.navigation;
-    //console.log('user is : ' + this.props.navigation.state.params.email);
     return (
       <View style={styles.container}>
         <Text>{this.state.name} Profile</Text>

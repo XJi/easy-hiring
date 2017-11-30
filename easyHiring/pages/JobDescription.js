@@ -13,7 +13,7 @@ export default class CompanyProfile extends React.Component {
     this.state = {
       jobTitle:'',
       jobDescription:'',
-      skills:{},
+      skills:null,
       loaded: true
     };
   }
@@ -22,15 +22,9 @@ export default class CompanyProfile extends React.Component {
     title: 'Job Description',
   };
   submitjob(){
-
     const { navigate } = this.props.navigation;
-    //console.log('user is : ' + this.props.navigation.state.params.email);
-    console.log('submitjob: '+this.props.navigation.state.params.name);
-    console.log('backemail: ' + firebase.database().ref().child('company').child(this.props.navigation.state.params.name).child('email'));
-    //Firebase.addNewJob('Nintendo', 'Software Developer', 'I am hungry',['C++', 'python']);
-    //Firebase.addNewJob('Nintendo', 'Software DeveloperII', 'I am hungry too',['Java', 'python','C++']);
-    //Firebase.addNewJob('Nintendo', 'Software DeveloperII', 'I am hungry too',['Java', 'python','C++']);
-  //  navigate('Company');
+    Firebase.addNewJob(this.props.navigation.state.params.name, this.state.jobTitle, this.state.jobDescription,this.state.skills);
+    navigate('Company',{email:this.props.navigation.state.params.email });
   }
   render() {
     const { navigate } = this.props.navigation;
@@ -47,6 +41,12 @@ export default class CompanyProfile extends React.Component {
           onChangeText={(text) => this.setState({jobDescription: text})}
           value={this.state.jobDescription}
           placeholder={"Description"}
+        />
+        <Text>Skills</Text>
+        <TextInput
+          placeholder="Seperate each skill by space"
+          onChangeText={(text) => {res = text.split(',');
+              this.setState({skills: res})}}
         />
         <Button
             onPress={this.submitjob.bind(this)}

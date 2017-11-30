@@ -10,7 +10,6 @@ export default class LoginScreen extends React.Component {
     super(props);
 
     this.state = {
-      name: '',
       email: '',
       password: '',
       loaded: true
@@ -27,7 +26,7 @@ export default class LoginScreen extends React.Component {
       loaded: false
     });
     Firebase.authUser(this.state.email,this.state.password);
-    navigate('Company',  {email: this.state.email});//, { user:  }
+    navigate('Company',  {email: this.state.email});
 
 
     //TODO: UPDATE loaded status

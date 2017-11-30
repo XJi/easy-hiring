@@ -33,24 +33,7 @@ class Firebase {
       firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
         var errorCode = error.code;
         var errorMessage = error.message;
-      //  console.log(noError + ', errorMSG: '+ errorMessage);
       });
-      /**var ref = firebase.database().ref().child('company');
-      ref.orderByChild('email').equalTo(email).once("value").
-      then(function(snapshot) {
-        if(snapshot.exists()){
-          //  console.log('PRODUCT EXIST');
-          //  console.log(snapshot);
-            snapshot.forEach((entry) => {
-              findname = entry.val().name;
-            });
-            console.log("Found:  " + findname);
-            return findname;
-        }
-        else{
-            console.log('Account doesnt exist');
-        }
-      }).catch(function(error){console.log('Cant retrieve account', error)});**/
     }
 
     static addNewJob(name, jobTitle, jobDescription, skills){
