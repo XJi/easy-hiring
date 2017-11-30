@@ -1,13 +1,16 @@
 import React from 'react';
 import * as firebase from 'firebase';
 import Firebase from '../includes/firebase';
+import QRCode from 'react-native-qrcode';
 import {
   StackNavigator,
 } from 'react-navigation';
 import { AppRegistry, StyleSheet, Text, View, Button, TextInput, ListView, TouchableHighlight,
   AlertIOS,} from 'react-native';
+
 const styles = require('../includes/styles.js')
 const ListItem = require('./ListItem');
+const JobListItem = require('./JobListItem')
 
 export default class ApplicantProfile extends React.Component {
   constructor(props){
@@ -16,9 +19,13 @@ export default class ApplicantProfile extends React.Component {
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
       }),
+      dataSource2: new ListView.DataSource({
+        rowHasChanged: (row1, row2) => row1 !== row2,
+      }),
       loaded: true
     };
     this.itemsRef = firebase.database().ref().child('applicant').child('yongrui').child('skill')
+    this.companyRef = firebase.database().ref().child('company')
   }
 
   listenForItems(itemsRef) {
@@ -39,8 +46,31 @@ export default class ApplicantProfile extends React.Component {
     });
   }
 
+  listenForJobItems(companyRef) {
+    companyRef.on('value', (snap) => {
+
+      // get children as an array
+      var items = [];
+      snap.forEach((child) => {
+        child.forEach((childname) => {
+          if (childname.key == 'Jobs') {
+            childname.forEach((job) => {
+              items.push({
+                jobname:child.key+'------'+job.key
+              });
+            });
+          }
+        });
+      });
+      this.setState({
+        dataSource2: this.state.dataSource2.cloneWithRows(items)
+      });
+
+    });
+  }
   componentDidMount() {
     this.listenForItems(this.itemsRef);
+    this.listenForJobItems(this.companyRef);
   }
 
   static navigationOptions = {
@@ -50,7 +80,6 @@ export default class ApplicantProfile extends React.Component {
     return (
       <View style={styles.container}>
         <Text>ApplicantProfile</Text>
-        <Text>{String(this.itemsRef)}</Text>
 
         <ListView
         dataSource = {this.state.dataSource}
@@ -58,23 +87,35 @@ export default class ApplicantProfile extends React.Component {
         enableEmptySections={true}
           style={styles.listview}
         />
+        <Text>Job List </Text>
+        <ListView
+        dataSource = {this.state.dataSource2}
+        renderRow={this._renderJobItem.bind(this)}
+        enableEmptySections={true}
+          style={styles.listview}
+        />
+
     </View>
     );
   }
-
+  _renderJobItem(item) {
+    return (
+      <JobListItem item={item} />
+    );
+  }
   _renderItem(item) {
-     const onPress = () => {
-       AlertIOS.alert(
-         'Complete',
-         null,
-         [
-           {text: 'Complete', onPress: (text) => this.itemsRef.child(item._key).remove()},
-           {text: 'Cancel', onPress: (text) => console.log('Cancelled')}
-         ]
-         );
-     };
+     // const onPress = () => {
+     //   AlertIOS.alert(
+     //     'Complete',
+     //     null,
+     //     [
+     //       {text: 'Complete', onPress: (text) => this.itemsRef.child(item._key).remove()},
+     //       {text: 'Cancel', onPress: (text) => console.log('Cancelled')}
+     //     ]
+     //     );
+     // };
      return (
-       <ListItem item={item} onPress={onPress} />
+       <ListItem item={item} />
        );
    }
 }
