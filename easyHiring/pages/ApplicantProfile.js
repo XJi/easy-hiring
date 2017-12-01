@@ -26,44 +26,64 @@ export default class ApplicantProfile extends React.Component {
     };
     this.itemsRef = firebase.database().ref().child('applicant').child('yongrui').child('skill')
     this.companyRef = firebase.database().ref().child('company')
+    this.applicantSkill = []
+    this.jobskill = []
   }
 
   listenForItems(itemsRef) {
     itemsRef.on('value', (snap) => {
 
       // get children as an array
-      var items = [];
+      this.applicantSkill = [];
       snap.forEach((child) => {
-        items.push({
+        this.applicantSkill.push({
           skillname:child.val().skillname,
           _key:child.key
         });
       });
       this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(items)
+        dataSource: this.state.dataSource.cloneWithRows(this.applicantSkill)
       });
 
     });
   }
 
   listenForJobItems(companyRef) {
-    companyRef.on('value', (snap) => {
 
+    companyRef.on('value', (snap) => {
       // get children as an array
-      var items = [];
+      var s = new Set();
+      this.applicantSkill.forEach((line) => {
+        if (line) {
+          s.add(line.skillname);
+        }
+      });
+      var jobs = []
+      this.jobskill = []
       snap.forEach((child) => {
         child.forEach((childname) => {
           if (childname.key == 'Jobs') {
             childname.forEach((job) => {
-              items.push({
-                jobname:child.key+'------'+job.key
+              job.forEach((keyname) => {
+                var flag = true;
+                if (keyname.key == 'skills') {
+                  keyname.forEach((name) => {
+                    console.log(job.key)
+                    if (s.has(name.val()) && flag) {
+                      jobs.push({
+                        jobname:child.key+'------'+job.key
+                      });
+                      flag = false
+                    }
+                  });
+                }
               });
             });
           }
         });
       });
       this.setState({
-        dataSource2: this.state.dataSource2.cloneWithRows(items)
+        dataSource2: this.state.dataSource2.cloneWithRows(jobs)
       });
 
     });
@@ -71,6 +91,7 @@ export default class ApplicantProfile extends React.Component {
   componentDidMount() {
     this.listenForItems(this.itemsRef);
     this.listenForJobItems(this.companyRef);
+
   }
 
   static navigationOptions = {
@@ -80,6 +101,8 @@ export default class ApplicantProfile extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.heading}>Yongrui Lin</Text>
+
+
         <View style={styles.qrcode}>
         <QRCode
           value='https://firebasestorage.googleapis.com/v0/b/easy-hiring-57516.appspot.com/o/YongruiLin_Resume.pdf?alt=media&token=2ffcc534-44eb-4cc3-a4fb-c5a863b1ace1'
