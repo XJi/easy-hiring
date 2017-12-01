@@ -5,7 +5,8 @@ import { Permissions } from 'expo';
 import {
   StackNavigator,
 } from 'react-navigation';
-import { Alert,AppRegistry, Linking, StyleSheet, Text, View, Button, ListView,TextInput,TouchableHighlight} from 'react-native';
+import { Alert,AppRegistry, Linking, StyleSheet, Image, Text, View, ListView,TextInput,TouchableHighlight} from 'react-native';
+import { Button } from 'react-native-elements';
 const styles = require('../includes/styles.js');
 const ListItem = require('./ListItem');
 const JobListItem = require('./JobListItem');
@@ -29,6 +30,8 @@ export default class AppliedCandidates extends React.Component {
 
   static navigationOptions = {
     title: 'Applied Candidates',
+    headerStyle: { backgroundColor: '#5F9EA0'},
+    headerTitleStyle: { color: '#2F4F4F' },
   };
 
   async listenForPersonItems(personRef) {
@@ -54,15 +57,42 @@ export default class AppliedCandidates extends React.Component {
     this.listenForPersonItems(this.personRef);
   }
   render() {
+    const remote = 'https://cdn.wallpapersafari.com/3/77/HARj7q.jpg';
+    const resizeMode = 'stretch';
     return (
-      <View style={styles.container}>
-        <Text>Person List </Text>
-        <ListView
-          dataSource = {this.state.dataSource}
-          renderRow={this._renderPersonItem.bind(this)}
-          enableEmptySections={true}
-            style={styles.listview}
-        />
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: '#eee',
+        }}
+      >
+        <View
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+            }}
+          >
+            <Image
+              style={{
+                flex: 1,
+                resizeMode,
+              }}
+              source={{ uri: remote }}
+            />
+        </View>
+        <View style={styles.jobcontainer}>
+          <Text style={{textAlign: 'center', top: 70, fontSize: 25, color: '#5F9EA0'}}>Person List </Text>
+          <Text style={{textAlign: 'center', top: 560, fontSize: 14, color: '#2F4F4F'}}>Press the entry to download resume </Text>
+          <ListView
+            dataSource = {this.state.dataSource}
+            renderRow={this._renderPersonItem.bind(this)}
+            enableEmptySections={true}
+            style={styles.joblistview}
+          />
+        </View>
       </View>
     );
   }
@@ -90,9 +120,6 @@ export default class AppliedCandidates extends React.Component {
         ],
         { cancellable: false }
       );
-
-      //Linking.openURL(JSON.stringify(resumes[people.indexOf(item.jobname)]));
-    //  navigate('Candidates',{name: this.props.navigation.state.params.name, job: item.jobname });
     };
 
     return (

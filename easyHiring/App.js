@@ -7,6 +7,8 @@ import JobDescription from './pages/JobDescription'
 import ApplicantProfile from './pages/ApplicantProfile'
 import QRCodeScanner from './pages/QRCodeScanner'
 import AppliedCandidates from  './pages/AppliedCandidates'
+import FloorMap from './pages/FloorMap'
+import ShowPlace from './pages/ShowPlace'
 import JobsView from './pages/JobsView'
 import {
   StackNavigator,
@@ -99,6 +101,12 @@ export const AppPages = StackNavigator({
   },
   Candidates: {
     screen: AppliedCandidates,
+  },
+  IndoorMap: {
+    screen: FloorMap,
+  },
+  IndoorLocation: {
+    screen: ShowPlace,
   },
 });
 

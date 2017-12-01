@@ -29,7 +29,11 @@ export default class ApplicantProfile extends React.Component {
     this.applicantSkill = []
     this.jobskill = []
   }
-
+  loadmap(){
+    const { navigate } = this.props.navigation;
+    const { params } = this.props.navigation.state;
+    navigate('IndoorMap');
+  }
   listenForItems(itemsRef) {
     itemsRef.on('value', (snap) => {
 
@@ -101,7 +105,7 @@ export default class ApplicantProfile extends React.Component {
       <View style={styles.container}>
         <Text style={styles.heading}>Yongrui Lin</Text>
         <View style={styles.tomapbutton}>
-          <Button onPress={console.log("lol")} color='#fff' title="map"/>
+          <Button onPress={this.loadmap.bind(this)} color='#fff' title="map"/>
         </View>
 
         <View style={styles.qrcode}>

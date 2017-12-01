@@ -19,6 +19,7 @@ export default class QRCodeScanner extends Component {
   };
   static navigationOptions = {
     title: 'Scan Resume',
+    headerStyle: { backgroundColor: '#5F9EA0'},
   };
   componentDidMount() {
     this._requestCameraPermission();

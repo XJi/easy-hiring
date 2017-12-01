@@ -4,9 +4,9 @@ import Firebase from '../includes/firebase';
 import {
   StackNavigator,
 } from 'react-navigation';
-import { AppRegistry, StyleSheet, Text, View, Button, ListView,TextInput,TouchableHighlight} from 'react-native';
+import { AppRegistry, StyleSheet, Text, View, Image, ListView,TextInput,TouchableHighlight} from 'react-native';
 const styles = require('../includes/styles.js');
-
+import { Button } from 'react-native-elements';
 const ListItem = require('./ListItem');
 const JobListItem = require('./JobListItem');
 export default class JobsView extends React.Component {
@@ -26,6 +26,8 @@ export default class JobsView extends React.Component {
 
   static navigationOptions = {
     title: 'Job Description',
+    headerStyle: { backgroundColor: '#5F9EA0'},
+    headerTitleStyle: { color: '#2F4F4F' },
   };
 
   async listenForJobItems(companyRef) {
@@ -50,22 +52,58 @@ export default class JobsView extends React.Component {
     //this.listenForItems(this.itemsRef);
     this.listenForJobItems(this.companyRef);
   }
-
-  /**backtoprofile(){
+  addjob(){
     const { navigate } = this.props.navigation;
     const { params } = this.props.navigation.state;
-    navigate('Company',{email:this.props.navigation.state.params.email });
-  }**/
+    console.log('addjob(): ' + this.state.name);
+    navigate('Job',{name: this.state.name, email: this.props.navigation.state.params.email});
+
+  }
   render() {
+    const remote = 'https://cdn.wallpapersafari.com/3/77/HARj7q.jpg';
+    const resizeMode = 'stretch';
     return (
-      <View style={styles.container}>
-        <Text>Job List </Text>
-        <ListView
-          dataSource = {this.state.dataSource2}
-          renderRow={this._renderJobItem.bind(this)}
-          enableEmptySections={true}
-            style={styles.listview}
-        />
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: '#eee',
+        }}
+      >
+        <View
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+            }}
+          >
+            <Image
+              style={{
+                flex: 1,
+                resizeMode,
+              }}
+              source={{ uri: remote }}
+            />
+        </View>
+        <View style={styles.jobcontainer}>
+          <Text style={{textAlign: 'center', top: 50, fontSize: 25, color: '#5F9EA0'}}>Job List </Text>
+          <ListView
+            dataSource = {this.state.dataSource2}
+            renderRow={this._renderJobItem.bind(this)}
+            enableEmptySections={true}
+            style={styles.joblistview}
+          />
+          <Button
+              raised
+              icon={{name: 'description', size: 26}}
+              containerViewStyle={styles.buttoncontainer4}
+              buttonStyle={styles.buttonhome}
+              onPress={this.addjob.bind(this)}
+              textStyle={{textAlign: 'center'}}
+              title="Add a New Job"
+            />
+        </View>
       </View>
     );
   }

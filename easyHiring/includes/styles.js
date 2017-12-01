@@ -12,8 +12,15 @@ var styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'transparent',
   },
+  jobcontainer: {
+    flex: 1,
+    borderWidth: 2,
+    borderColor: 'transparent',
+    width:'90%',
+    left:'5%',
+  },
   buttonhome: {
-    borderRadius: 7,
+    borderRadius: 10,
     backgroundColor: '#5F9EA0',
   },
   buttoncontainer: {
@@ -26,7 +33,7 @@ var styles = StyleSheet.create({
     borderRadius: 10,
     width: '56%',
     left: '17%',
-    top: '202%',
+    top: '207%',
   },
   buttoncontainer3: {
     borderRadius: 10,
@@ -39,6 +46,16 @@ var styles = StyleSheet.create({
     width: '56%',
     left: '17%',
 
+  },
+  buttoncontainer5: {
+    borderRadius: 10,
+    width: '40%',
+    left: '50%',
+    top: '20%',
+  },
+  joblistview: {
+    flex: 1,
+    top:'20%',
   },
   listview: {
     flex: 1,

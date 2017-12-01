@@ -23,6 +23,7 @@ export default class CompanyProfile extends React.Component {
   static navigationOptions = {
     title: 'Profile',
     headerStyle: { backgroundColor: '#5F9EA0'},
+    headerTitleStyle: { color: '#2F4F4F' },
   };
   async fetchData() {
     const response = await firebase.database().ref().child('company').orderByChild('email').equalTo(this.props.navigation.state.params.email).once("value").
@@ -44,7 +45,6 @@ export default class CompanyProfile extends React.Component {
   addjob(){
     const { navigate } = this.props.navigation;
     const { params } = this.props.navigation.state;
-    console.log('addjob(): ' + this.state.name);
     navigate('Job',{name: this.state.name, email: this.props.navigation.state.params.email});
 
   }
