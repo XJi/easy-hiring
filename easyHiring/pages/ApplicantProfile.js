@@ -49,7 +49,6 @@ export default class ApplicantProfile extends React.Component {
   }
 
   listenForJobItems(companyRef) {
-
     companyRef.on('value', (snap) => {
       // get children as an array
       var s = new Set();
@@ -101,7 +100,9 @@ export default class ApplicantProfile extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.heading}>Yongrui Lin</Text>
-
+        <View style={styles.tomapbutton}>
+          <Button onPress={console.log("lol")} color='#fff' title="map"/>
+        </View>
 
         <View style={styles.qrcode}>
         <QRCode
@@ -128,13 +129,51 @@ export default class ApplicantProfile extends React.Component {
     </View>
     );
   }
+
+  submitApplyJob(jobname, applicantname) {
+    var idx = 0;
+    for (idx = 0; idx < jobname.length; idx++) {
+      if (jobname[idx] == '-') {
+        break;
+      }
+    }
+    var companyName = jobname.substring(0, idx);
+    var jobName = jobname.substring(idx + 6);
+    var ref = this.companyRef.child(companyName).child('Jobs').child(jobName);
+    var flag = false;
+    ref.once('value', (snap) => {
+      flag = snap.child('applied').exists();
+    });
+    console.log(flag)
+    if (flag) {
+      var input = {
+        yongrui: {
+          resume:"https://firebasestorage.googleapis.com/v0/b/easy-hiring-57516.appspot.com/o/YongruiLin_Resume.pdf?alt=media&token=2ffcc534-44eb-4cc3-a4fb-c5a863b1ace1",
+          skill:"java"
+        }
+      };
+      ref.child('applied').update(input);
+    }
+    else {
+      var input = {
+        applied:{yongrui: {
+          resume:"https://firebasestorage.googleapis.com/v0/b/easy-hiring-57516.appspot.com/o/YongruiLin_Resume.pdf?alt=media&token=2ffcc534-44eb-4cc3-a4fb-c5a863b1ace1",
+          skill:"java"
+        }
+      }
+      };
+      ref.update(input);
+    }
+
+  }
+
   _renderJobItem(item) {
     const onPress = () => {
       AlertIOS.alert(
         'Apply',
         null,
         [
-          {text: 'Apply', onPress: (text) => console.log('apply')},
+          {text: 'Apply', onPress: (text) => {this.submitApplyJob(item.jobname, 'yongrui')}},
           {text: 'Cancel', onPress: (text) => console.log('Cancelled')}
         ]
         );
