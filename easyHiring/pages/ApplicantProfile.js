@@ -2,6 +2,8 @@ import React from 'react';
 import * as firebase from 'firebase';
 import Firebase from '../includes/firebase';
 import QRCode from 'react-native-qrcode';
+import FloorMap from './FloorMap';
+import ShowPlace from './ShowPlace';
 import {
   StackNavigator,
 } from 'react-navigation';

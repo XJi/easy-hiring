@@ -62,7 +62,7 @@ export default class FloorMap extends React.Component {
   }
   render() {
     const { navigate } = this.props.navigation;
-    const remote = 'https://lh3.googleusercontent.com/wKVps7t0hq9d_IjK5ImrkTXnzRZW1AEfzYe-AeQPXG721plaCyhrcPJVyUCQCZx36jR_EMEIPfdCI44lAn9m=w2356-h1076-rw';
+    const remote = 'https://firebasestorage.googleapis.com/v0/b/easy-hiring-57516.appspot.com/o/klauscareerfair.png?alt=media&token=c67ffdc5-123d-4a8e-b369-b35fc830962b';
     const resizeMode = 'stretch';
     return (
       <View
