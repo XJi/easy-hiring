@@ -98,6 +98,7 @@ var styles = StyleSheet.create({
     textAlign:"center",
     padding:5,
     fontSize: 24,
+     color: '#5F9EA0',
   },
   qrcode: {
     alignItems: 'center',
@@ -117,16 +118,12 @@ var styles = StyleSheet.create({
   tomapbutton:{
     backgroundColor:'#68a0cf',
     alignSelf: 'flex-end',
-    marginTop: 2,
-    marginRight: 10,
     position: 'absolute',
-    borderRadius: 8,
+    marginTop: 40,
+    borderRadius: 5,
     borderColor: '#fff',
-    borderWidth: 1,
-    paddingLeft: 3,
-    paddingRight:3,
-    paddingTop:3,
-    paddingBottom: 3,
+    borderWidth: 0,
+    padding: 1
   }
 })
 
