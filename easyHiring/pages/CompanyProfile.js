@@ -27,7 +27,6 @@ export default class CompanyProfile extends React.Component {
           var gg= '';
           snapshot.forEach((entry) => {
             gg = entry.val().name;
-            //console.log(entry.val().name);
             return gg;
           });
           return gg;

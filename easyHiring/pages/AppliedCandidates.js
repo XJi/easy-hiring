@@ -5,7 +5,7 @@ import { Permissions } from 'expo';
 import {
   StackNavigator,
 } from 'react-navigation';
-import { AppRegistry, Linking, StyleSheet, Text, View, Button, ListView,TextInput,TouchableHighlight} from 'react-native';
+import { Alert,AppRegistry, Linking, StyleSheet, Text, View, Button, ListView,TextInput,TouchableHighlight} from 'react-native';
 const styles = require('../includes/styles.js');
 const ListItem = require('./ListItem');
 const JobListItem = require('./JobListItem');
@@ -41,9 +41,7 @@ export default class AppliedCandidates extends React.Component {
           });
           /*Hard Coded just to get it working*/
           people.push(child.key);
-          resumes.push(child.child('resume'));
-
-          console.log('person :');
+          resumes.push(JSON.stringify(child.child('resume')));
           console.log(child.child('resume'));
       });
       this.setState({
@@ -73,11 +71,20 @@ export default class AppliedCandidates extends React.Component {
       console.log(resumes[people.indexOf(item.jobname)]);
       Alert.alert(
         'Open this URL?',
-        JSON.stringify(resumes[people.indexOf(item.jobname)]),
+        encodeURI(resumes[people.indexOf(item.jobname)]),
         [
           {
             text: 'Yes',
-            onPress: () => Linking.openURL(JSON.stringify(resumes[people.indexOf(item.jobname)])),
+            onPress: () => {
+              var resumeUrl = resumes[people.indexOf(item.jobname)].replace(/"/g, "");
+              Linking.canOpenURL(resumeUrl).then(supported => {
+                  if (!supported) {
+                    console.log('Can\'t handle url: ' + resumeUrl);
+                  } else {
+                    return Linking.openURL(resumeUrl);
+                  }
+                }).catch(err => console.error('An error occurred', err));
+            }
           },
           { text: 'No', onPress: () => {} },
         ],
