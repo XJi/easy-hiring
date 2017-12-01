@@ -27,6 +27,7 @@ export default class FloorMap extends React.Component {
 
   static navigationOptions = {
     title: 'Floor Map',
+    headerBackTitle: 'Profile',
     headerStyle: { backgroundColor: '#5F9EA0'},
     headerTitleStyle: { color: '#2F4F4F' },
   };
@@ -53,6 +54,11 @@ export default class FloorMap extends React.Component {
         navigate('IndoorLocation',{locx: this.state.x, locy: this.state.y});
       }
     }
+  }
+  backhome(){
+    const { navigate } = this.props.navigation;
+    const { params } = this.props.navigation.state;
+    navigate('Applicant');
   }
   render() {
     const { navigate } = this.props.navigation;

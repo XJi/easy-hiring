@@ -126,8 +126,15 @@ export default class ApplicantProfile extends React.Component {
           />
       </View>
         <Text style={styles.heading}>Yongrui Lin</Text>
-        <View style={styles.tomapbutton}>
-          <Button onPress={this.loadmap.bind(this)} color='#fff' title="map"/>
+        <View>
+          <Button
+            raised
+            icon={{name: 'home', size: 12}}
+            buttonStyle={styles.buttonhome}
+            textStyle={{textAlign: 'center'}}
+            onPress={this.loadmap.bind(this)}
+            title="Map"
+          />
         </View>
 
         <View style={styles.qrcode}>

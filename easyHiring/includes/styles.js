@@ -48,10 +48,10 @@ var styles = StyleSheet.create({
 
   },
   buttoncontainer5: {
-    borderRadius: 10,
-    width: '40%',
-    left: '50%',
-    top: '20%',
+    borderRadius: 5,
+    width: '35%',
+    left: '55%',
+    top: '17%',
   },
   joblistview: {
     flex: 1,

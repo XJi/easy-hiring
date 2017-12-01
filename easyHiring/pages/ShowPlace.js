@@ -23,6 +23,10 @@ export default class ShowPlace extends React.Component {
       loaded: true
     };
   }
+  static navigationOptions = {
+    title: 'Company Location',
+    headerBackTitle: 'Profile'
+  }
   handleCanvas1 = (canvas) => {
     const { params } = this.props.navigation.state;
     const { navigate } = this.props.navigation;
