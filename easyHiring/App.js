@@ -11,25 +11,65 @@ import JobsView from './pages/JobsView'
 import {
   StackNavigator,
 } from 'react-navigation';
-import { AppRegistry, StyleSheet, Text, View, Button} from 'react-native';
-
+import { Button } from 'react-native-elements';
+import { AppRegistry, Image, StyleSheet, Text, View} from 'react-native';
+const styles = require('./includes/styles.js');
 class HomeScreen extends React.Component {
   static navigationOptions = {
-    title: 'Welcome'
+    title: 'Welcome',
+    headerStyle: { backgroundColor: '#5F9EA0'},
+    headerTitleStyle: { color: 'white' },
   };
   render() {
+    const remote = 'https://s-media-cache-ak0.pinimg.com/originals/39/2e/42/392e42ae5ba5bcca92536371b1e566d2.jpg';
     const { navigate } = this.props.navigation;
+    const resizeMode = 'stretch';
     return (
-      <View style={styles.container}>
-        <Text>Are you an applicant or a recruiter?</Text>
-        <Button
-          onPress={() => navigate('Applicant')}
-          title="Applicant"
-        />
-        <Button
-          onPress={() => navigate('Login')}
-          title="Recruiter"
-        />
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: '#eee',
+        }}
+      >
+        <View
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+            }}
+          >
+            <Image
+              style={{
+                flex: 1,
+                resizeMode,
+              }}
+              source={{ uri: remote }}
+            />
+        </View>
+        <View>
+          <Text style={{textAlign: 'center', top: 200, fontSize: 20, color: '#B0C4DE'}}>Are you an applicant or a recruiter?</Text>
+              <Button
+                raised
+                icon={{name: 'account-circle', size: 26}}
+                containerViewStyle={styles.buttoncontainer}
+                buttonStyle={styles.buttonhome}
+                textStyle={{textAlign: 'center'}}
+                onPress={() => navigate('Applicant')}
+                title="Applicant"
+            />
+
+            <Button
+              raised
+              icon={{name: 'assignment-ind', size: 26}}
+              containerViewStyle={styles.buttoncontainer1}
+              buttonStyle={styles.buttonhome}
+              textStyle={{textAlign: 'center'}}
+              onPress={() => navigate('Login')}
+              title="Recruiter"
+            />
+        </View>
       </View>
     );
   }
@@ -74,17 +114,29 @@ export default class App extends React.Component {//export default
     };
   }
   render() {
-    console.ignoredYellowBox = ['Setting a timer'];
+    console.ignoredYellowBox = ['Setting a timer','FIREBASE WARNING'];
       return <AppPages />;
   }
 }
 
+AppRegistry.registerComponent('BackgroundImage', () => BackgroundImage);
 
-const styles = StyleSheet.create({
+/**const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+
   },
-});
+  <View
+      style={{
+        position: 'absolute',
+        top: '1150%',
+        left: '20%',
+        width: '60%',
+        height: '60%',
+        overflow: 'hidden',
+      }}
+    >
+});**/

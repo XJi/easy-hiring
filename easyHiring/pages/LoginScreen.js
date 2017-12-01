@@ -4,8 +4,9 @@ import Firebase from '../includes/firebase';
 import {
   StackNavigator,
 } from 'react-navigation';
-import { AppRegistry, StyleSheet, Text, View, Button, TextInput} from 'react-native';
-const loginstyle = require('../includes/loginstyle');
+import { AppRegistry, StyleSheet, Text, View, TextInput} from 'react-native';
+import { Button } from 'react-native-elements';
+const styles = require('../includes/styles.js');
 export default class LoginScreen extends React.Component {
   constructor(props){
     super(props);
@@ -20,6 +21,7 @@ export default class LoginScreen extends React.Component {
 
   static navigationOptions = {
     title: 'Login',
+    headerStyle: { backgroundColor: '#5F9EA0'},
   };
   async login(){
     const { navigate } = this.props.navigation;
@@ -45,29 +47,34 @@ export default class LoginScreen extends React.Component {
   }
   render() {
     const { navigate } = this.props.navigation;
+
     return (
-      <View style={loginstyle.container}>
-        <Text>Login</Text>
-        <Text>{this.state.errorMsg}</Text>
-        <Text>Email Address</Text>
+      <View>
+        <Text style={{textAlign: 'center', top: 100, fontSize: 25, color: '#5F9EA0'}}>Login</Text>
+        <Text style={{textAlign: 'center', top: 110, fontSize: 12, color: 'red'}}>{this.state.errorMsg}</Text>
+        <Text style={{left: 20, top: 130, fontSize: 16, color: '#5F9EA0'}}>Email Address</Text>
         <TextInput
-            //style={styles.textinput} this.setState({arrayvar:[...this.state.arrayvar, newelement]});
-            onChangeText={(text) => this.setState({email: text})}
+            style={{left: 17,top: 140, width: '85%'}}
+            onChangeText={(text) => this.setState({email: 'google@google.com'})}//text})}
             value={this.state.email}
             placeholder={"Email Address"}
           />
-        <Text>Password</Text>
+        <Text style={{left: 20, top: 145, fontSize: 16, color: '#5F9EA0'}}>Password</Text>
         <TextInput
-            //style={styles.textinput}
-            onChangeText={(text) => this.setState({password: text})}
+            style={{left: 17,top: 155, width: '85%'}}
+            onChangeText={(text) => this.setState({password:'google' })}//text})}
             value={this.state.password}
             secureTextEntry={true}
             placeholder={"Password"}
           />
         <Button
+            raised
+            icon={{name: 'home', size: 26}}
+            containerViewStyle={styles.buttoncontainer3}
+            buttonStyle={styles.buttonhome}
             onPress={this.login.bind(this)}
+            textStyle={{textAlign: 'center'}}
             title="Login"
-            style={loginstyle.primaryButton}
           />
       </View>
     );

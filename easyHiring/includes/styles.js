@@ -12,6 +12,34 @@ var styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'transparent',
   },
+  buttonhome: {
+    borderRadius: 7,
+    backgroundColor: '#5F9EA0',
+  },
+  buttoncontainer: {
+    borderRadius: 10,
+    width: '56%',
+    left: '17%',
+    top: '195%',
+  },
+  buttoncontainer1: {
+    borderRadius: 10,
+    width: '56%',
+    left: '17%',
+    top: '202%',
+  },
+  buttoncontainer3: {
+    borderRadius: 10,
+    width: '56%',
+    left: '17%',
+    top: '140%',
+  },
+  buttoncontainer4: {
+    borderRadius: 10,
+    width: '56%',
+    left: '17%',
+
+  },
   listview: {
     flex: 1,
   },

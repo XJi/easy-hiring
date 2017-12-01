@@ -6,6 +6,7 @@ import {
 } from 'react-navigation';
 import { AppRegistry, StyleSheet, Text, View, Button, ListView,TextInput,TouchableHighlight} from 'react-native';
 const styles = require('../includes/styles.js');
+
 const ListItem = require('./ListItem');
 const JobListItem = require('./JobListItem');
 export default class JobsView extends React.Component {
