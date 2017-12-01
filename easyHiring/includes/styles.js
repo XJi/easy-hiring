@@ -88,6 +88,17 @@ var styles = StyleSheet.create({
   },
   tomapbutton:{
     backgroundColor:'#68a0cf',
+    alignSelf: 'flex-end',
+    marginTop: 2,
+    marginRight: 10,
+    position: 'absolute',
+    borderRadius: 8,
+    borderColor: '#fff',
+    borderWidth: 1,
+    paddingLeft: 3,
+    paddingRight:3,
+    paddingTop:3,
+    paddingBottom: 3,
   }
 })
 
