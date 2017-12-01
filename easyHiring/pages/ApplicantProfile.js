@@ -5,7 +5,7 @@ import QRCode from 'react-native-qrcode';
 import {
   StackNavigator,
 } from 'react-navigation';
-import { AppRegistry, StyleSheet, Text, View, Button, TextInput, ListView, TouchableHighlight,
+import { AppRegistry, Image, StyleSheet, Text, View, Button, TextInput, ListView, TouchableHighlight,
   AlertIOS,} from 'react-native';
 
 const styles = require('../includes/styles.js')
@@ -101,8 +101,30 @@ export default class ApplicantProfile extends React.Component {
     title: 'Profile',
   };
   render() {
+    const remote = 'https://cdn.wallpapersafari.com/3/77/HARj7q.jpg';
+    const resizeMode = 'stretch';
     return (
-      <View style={styles.container}>
+      <View style={{
+        flex: 1,
+        backgroundColor: '#eee',
+      }}>
+      <View
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+          }}
+        >
+          <Image
+            style={{
+              flex: 1,
+              resizeMode,
+            }}
+            source={{ uri: remote }}
+          />
+      </View>
         <Text style={styles.heading}>Yongrui Lin</Text>
         <View style={styles.tomapbutton}>
           <Button onPress={this.loadmap.bind(this)} color='#fff' title="map"/>
