@@ -25,5 +25,7 @@ Time to check it out(inside easyHiring folder):
   Run on android emulator or android device: `npm run android`
   Run on iOS device: `npm run ios`
   
-  
+### demo
+![teaser results] (https://github.com/XJi/easy-hiring/blob/master/images/Screen%20Shot%202017-12-02%20at%2012.53.55%20AM.png?raw=true)
+
 
