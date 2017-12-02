@@ -26,6 +26,8 @@ Time to check it out(inside easyHiring folder):
   Run on iOS device: `npm run ios`
   
 ### demo
-![teaser results] (https://github.com/XJi/easy-hiring/blob/master/images/Screen%20Shot%202017-12-02%20at%2012.53.55%20AM.png?raw=true)
+
+![teaser results](https://github.com/XJi/easy-hiring/blob/master/images/Screen%20Shot%202017-12-02%20at%2012.53.55%20AM.png)
 
 
+![teaser results](https://github.com/XJi/easy-hiring/blob/master/images/Screen%20Shot%202017-12-02%20at%2012.58.19%20AM.png)
