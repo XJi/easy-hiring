@@ -3,6 +3,11 @@ A mobile application provides services for both job hunters and recuiters on car
 
 The application is built via React Native and Firebase. We recommend Expo for viewing the demo as this app is initialized via create-react-native. As for the deployment, we have tested on both android and iOS devices. 
 
+### TODO: 
+ 1. Add LinkedIn login. (package: react-native-linkedin-login)
+ 2. Whatever with the linkedin, check out https://github.com/xcarpentier/react-native-linkedin
+ 3. Remove hard-coded sessions, be a bad ass. 
+
 ### prerequisite libraries/packages checklist 
  react-native-firebase
  react-native-canvas
